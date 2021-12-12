@@ -6,26 +6,35 @@ import './LoanCard.css';
 const LoanCard = () => {
     const selectedLoan = useRecoilValue(selectedLoanAtom);
     if (selectedLoan) {
+        const repayPercent = selectedLoan.paidAmount / selectedLoan.loanAmount * 100;
         return (
             <div className="p-3">
-                <div className="card p-5 shadow">
-                    <img src={selectedLoan.image.url} className="card-img-top" alt={selectedLoan.name} />
-                    <div className="card-body">
+                <div className="card p-5 shadow-sm">
+                    <img src={selectedLoan.image.url} className="card-img-top img-thumbnail p-3 shadow" alt={selectedLoan.name} />
+                    <div className="card-body m-5">
                         <h5 className="card-title">
                             {selectedLoan.name} <i className="fas fa-info-circle" alt={selectedLoan.id} title={selectedLoan.id}></i>
+                            &nbsp;
+                            {
+                                selectedLoan.gender === 'male' ?
+                                    <i className="fas fa-mars" alt={selectedLoan.id} title={selectedLoan.id}></i> :
+                                    <i className="fas fa-venus" alt={selectedLoan.id} title={selectedLoan.id}></i>
+                            }
                         </h5>
-                        <p className="card-text">{selectedLoan.description}</p>
+                        <p className="card-text">{selectedLoan.description.replaceAll('<br />', ' ')}</p>
                         <p className="card-text">{selectedLoan.status}</p>
+                        <div className="progress">
+                            <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: `${repayPercent}%` }} ariaValuenow={repayPercent} ariaValuemin="0" ariaValuemax="100"></div>
+                        </div>
                         <p className="card-text">USD {selectedLoan.loanAmount}</p>
                         <p className="card-text">USD {selectedLoan.paidAmount}</p>
-                        <p className="card-text">USD {selectedLoan.gender}</p>
                         <p>
                             <img className="m-2 shadow" src={`https://flagcdn.com/h20/${selectedLoan.geocode.country.isoCode.toLowerCase()}.jpg`} alt={selectedLoan.name} />
                             {selectedLoan.geocode.country.name}
                         </p>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     } else {
         return (
