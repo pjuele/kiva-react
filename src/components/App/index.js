@@ -7,7 +7,7 @@ import LoanCard from '../../components/LoanCard';
 import logo from "./kiva-watch.png";
 import './App.css';
 
-import 'whatwg-fetch';
+// import 'whatwg-fetch';
 // https://github.com/github/fetch
 // npm install whatwg-fetch --save
 
@@ -39,11 +39,11 @@ class App extends Component {
           </header>
 
           <Intro message="Here you can find all your Kiva loans!" />
-          <div className="row mt-5">
-            <div className="col-12 col-md-6" id="ListColumn">
+          <div className="row mt-5 p-2">
+            <div className="col-12 col-md-7" id="ListColumn">
               <Loans />
             </div>
-            <div className="col-12 col-md-4 pt-4" id="DetailsColumn">
+            <div className="col-12 col-md-5 pt-4" id="DetailsColumn">
               <LoanCard />
             </div>
           </div>

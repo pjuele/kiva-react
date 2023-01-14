@@ -11,7 +11,7 @@ const LoanCard = () => {
             <div className="p-3">
                 <div className="card p-5 shadow-sm">
                     <img src={selectedLoan.image.url} className="card-img-top img-thumbnail p-3 shadow" alt={selectedLoan.name} />
-                    <div className="card-body m-5">
+                    <div className="card-body m-1">
                         <h5 className="card-title">
                             {selectedLoan.name} <i className="fas fa-info-circle" alt={selectedLoan.id} title={selectedLoan.id}></i>
                             &nbsp;
